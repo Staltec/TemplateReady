@@ -3,10 +3,11 @@
 
 ## templateready -?
 
-   Usage:
-     templateready [options]
 
-   Options:
+    Usage:
+      templateready [options]
+
+    Options:
      -d|--dir <workDirectory>
        The work directory. Use as base path for source directory and output JS
        Default is '.'
