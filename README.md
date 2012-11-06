@@ -1,7 +1,7 @@
 # Template Ready is template on the fly pre-compiler.
 
 
-## templateready -?
+## templateready --help
 
 
     Usage:
