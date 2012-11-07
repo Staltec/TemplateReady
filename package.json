@@ -1,6 +1,6 @@
 {
   "name": "templateready",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "Template on the fly pre-compiler.",
   "author": "Alexander `Staltec` Prozorov <staltec@gmail.com>",
   "dependencies": {

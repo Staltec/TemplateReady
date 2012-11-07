@@ -25,10 +25,10 @@ exports.addEngine = function(engine, forcePattern){
       //util.puts('Plugin template engine: "'+(engine.name?engine.name:'Unknown')+'" with pattern: '+engine.filePattern);
    }
    return this;
-}
+};
 
 exports.run = function (args){
-   var arg, stats;
+   var arg;
 
    if(!args.length) return help();
 
@@ -39,6 +39,8 @@ exports.run = function (args){
    while (arg = args.shift()) {
       if(arg === "--help" || arg === "-h" || arg === "-?"){
          return help();
+      } else if(arg === "--version" || arg === "-V"){
+          return console.log('templateready version: '+meta.version);
       } else if(arg === "--watch" || arg === "-w"){
          cfg.watch = true;
       } else if(arg === "--dir" || arg === "-d"){
@@ -87,6 +89,8 @@ exports.run = function (args){
    }
 
    getWatchedFiles(cfg.sourceDir);
+
+   return true;
 };
 
 
@@ -96,7 +100,7 @@ function getWatchedFiles (dir, state){
    if(!state) state = {
       files: [],
       entropia: 0
-   }
+   };
 
    state.entropia++;
    fs.stat(dir, function(err, stats){
@@ -125,7 +129,7 @@ function getWatchedFiles (dir, state){
          }
       }
    });
-};
+}
 
 
 var _requireSample = function (name){ return this._names[name] ? this[this._names[name]] : undefined };
@@ -157,7 +161,7 @@ function compileFiles (files){
       util.debug('save canges...');
 
    })
-};
+}
 
 
 function minifier(code){
@@ -165,7 +169,7 @@ function minifier(code){
    ast = pro.ast_mangle(ast); // get a new AST with mangled names
    ast = pro.ast_squeeze(ast); // get an AST with compression optimizations
    return pro.gen_code(ast); // compressed code here
-};
+}
 
 
 function getFuncName(file){
@@ -173,8 +177,7 @@ function getFuncName(file){
    var funcName = fileName.replace(/\..+?$/,'').replace(/\/\w/g, function(t){return t.charAt(1).toUpperCase()});
    templateNames[fileName] = funcName;
    return funcName;
-
-};
+}
 
 
 function compileFile (file, callback){
@@ -208,7 +211,7 @@ function compileFile (file, callback){
       callback(null, '');
    }
 
-};
+}
 
 
 function watchGivenFile (file){
@@ -223,21 +226,21 @@ function watchGivenFile (file){
       }
    }
 
-};
+}
 
 
 function onChangeWin(event, filename){
    if( event === 'change' && filename) {
       getWatchedFiles(cfg.sourceDir);
    }
-};
+}
 
 
 function onChangeOther(oldStat, newStat){
    if ( newStat.mtime.getTime() !== oldStat.mtime.getTime() ) {
       getWatchedFiles(cfg.sourceDir);
    }
-};
+}
 
 
 function help (){
@@ -296,11 +299,14 @@ function help (){
       ("    Suppress DEBUG messages")
       ("")
 
+      ("  -V|--version")
+      ("    Show version and exit.")
+      ("")
+
       ("Examples:")
-      ("  templateready myapp.js")
       ("  templateready -d ./wwwroot/app -s mytemplates -w -p 1000")
       ("  templateready --source ./wwwroot/mytemplates --file ./wwwroot/app/comiled.js --target 'Application.Templates'")
       ("");
-};
+}
 
 
