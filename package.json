@@ -1,17 +1,32 @@
 {
-   "name" : "templateready",
-   "version" : "0.0.2",
-   "description" : "Template on the fly pre-compiler.",
-   "author" : "Alexander `Staltec` Prozorov <staltec@gmail.com>",
-   "dependencies": {
-      "async": ">=0.1.22",
-      "uglify": ">= 1.3.4",
-      "underscore": ">= 1.4.2"
-   },
-   "repository" : {"type": "git", "url": "git://github.com/"},
-   "main" : "index.js",
-   "bin" : {
-      "templateready" : "index.js"
-   },
-   "engine": "node >= 0.6.x"
+  "name": "templateready",
+  "version": "0.0.2",
+  "description": "Template on the fly pre-compiler.",
+  "author": "Alexander `Staltec` Prozorov <staltec@gmail.com>",
+  "dependencies": {
+    "async": ">=0.1.22",
+    "uglify-js": ">= 1.3.4",
+    "underscore": ">= 1.4.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/Staltec/TemplateReady.git"
+  },
+  "main": "index.js",
+  "bin": {
+    "templateready": "index.js"
+  },
+  "engine": "node >= 0.6.x",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "template",
+    "compile",
+    "pre-compile",
+    "ejs",
+    "watch"
+  ],
+  "license": "BSD"
 }
