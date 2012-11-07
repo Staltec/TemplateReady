@@ -12,9 +12,9 @@
     "type": "git",
     "url": "git://github.com/Staltec/TemplateReady.git"
   },
-  "main": "index.js",
+  "main": "./index.js",
   "bin": {
-    "templateready": "index.js"
+    "templateready": "./index.js"
   },
   "engine": "node >= 0.6.x",
   "devDependencies": {},
