@@ -1,0 +1,22 @@
+<div>
+    <h1><%= title %></h1>
+
+    <% if(list.length){ %>
+    <ol>
+        <% for(var v, i=0, l=list.length; i<l; i++){ v = list[i]; %>
+        <li><%= v %></li>
+        <% } %>
+    </ol>
+    <% }else{ %>
+        Пустой список (не будет показан).
+    <% } %>
+
+    <h2>Дискография: <%= hash.firstName %> <%= hash.lastName %> <%= hash.age ? '('+hash.age+')' : '' %></h2>
+
+    <ul>
+        <% for(var v, i=0, l=objList.length; i<l; i++){ v = objList[i]; %>
+        <li><%= v.year %> &mdash; <%= v.album %></li>
+        <% } %>
+    </ul>
+
+</div>

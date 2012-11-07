@@ -151,7 +151,7 @@ function compileFiles (files){
       compileFile(f, cb);
    },
    function(err, res){
-      hdr =  '// Assembled by Template Ready '+meta.version+'\n';
+      hdr =  '// Assembled by TemplateReady '+meta.version+'\n';
       hdr += '// At '+new Date()+'\n\n';
 
       buf += cfg.targetOject+'._names = '+JSON.stringify(templateNames)+';\n\n';
