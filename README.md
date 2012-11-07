@@ -46,7 +46,6 @@
        Suppress DEBUG messages
 
       Examples:
-        templateready myapp.js
         templateready -d ./wwwroot/app -s mytemplates -w -p 1000
         templateready --source ./wwwroot/mytemplates --file ./wwwroot/app/comiled.js --target 'Application.Templates'
 
