@@ -5,21 +5,31 @@
  */
 
 var util = require("util");
+var fs = require("fs");
 var _ = require('underscore');
 
-module.exports = {
-   name: 'Underscore-template compiler',
+module.exports = {};
 
-   filePattern: /^.*\.(html?)$/,
+module.exports.name = 'Underscore-template compiler';
 
-   compiler: function(str){
-      var code;
-      try{
-         code = _.template(str).source;
-      }catch(e){
-         util.error('Error pre-compile template: ' + str);
+module.exports.filePattern = /^.*\.(html?)$/;
+
+module.exports.compiler = function(options, callback){
+
+   fs.readFile(options.file, 'utf8', function(err, fileContent){
+      var code, cErr;
+
+      if(err){
+         callback(err, '');
+      }else{
+         try{
+            code = _.template(fileContent).source;
+         }catch(e){
+            util.error('Error pre-compile template: ' + fileContent);
+            cErr = e;
+         }
+         callback(cErr, code);
       }
-      return code;
-   }
 
+   });
 };

@@ -132,6 +132,14 @@ function getWatchedFiles (dir, state){
 }
 
 
+function minifier(code){
+    var ast = jsp.parse(code); // parse code and get the initial AST
+    ast = pro.ast_mangle(ast); // get a new AST with mangled names
+    ast = pro.ast_squeeze(ast); // get an AST with compression optimizations
+    return pro.gen_code(ast); // compressed code here
+}
+
+
 var _requireSample = function (name){ return this._names[name] ? this[this._names[name]] : undefined };
 
 function compileFiles (files){
@@ -164,14 +172,6 @@ function compileFiles (files){
 }
 
 
-function minifier(code){
-   var ast = jsp.parse(code); // parse code and get the initial AST
-   ast = pro.ast_mangle(ast); // get a new AST with mangled names
-   ast = pro.ast_squeeze(ast); // get an AST with compression optimizations
-   return pro.gen_code(ast); // compressed code here
-}
-
-
 function getFuncName(file){
    var fileName =  file.replace(sourceDirRegExp,'');
    var funcName = fileName.replace(/\..+?$/,'').replace(/\/\w/g, function(t){return t.charAt(1).toUpperCase()});
@@ -181,7 +181,7 @@ function getFuncName(file){
 
 
 function compileFile (file, callback){
-   var compiler, funcCode;
+   var compiler;
    for(var i=0, l=compilers.length; i<l; i++){
       if(compilers[i].filePattern.test(file)){
          compiler = compilers[i].compiler;
@@ -190,22 +190,15 @@ function compileFile (file, callback){
    }
 
    if(compiler){
-      fs.readFile(file, 'utf8', function(err, data){
-         if(err){
-            util.error('Error reading template: ' + file);
-            callback(err, '');
-         }else{
-            funcCode = compiler(data);
-            if(funcCode){
-               callback(null, cfg.targetOject+'.'+getFuncName(file)+' = ' + funcCode);
-            }else{
-               callback(null, '');
-               util.error('Trouble with template file: ' + file);
-            }
-            if(!cfg.isWindowsWithoutWatchFile) watchGivenFile(file);
-         }
-
-      });
+     compiler({file:file}, function(err, funcCode){
+        if(err){
+           callback(err, '');
+           util.error('Trouble with template file: ' + file);
+        }else{
+           callback(null, funcCode ? cfg.targetOject+'.'+getFuncName(file)+' = ' + funcCode : '');
+        }
+        if(!cfg.isWindowsWithoutWatchFile) watchGivenFile(file);
+     });
 
    }else{
       callback(null, '');
