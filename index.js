@@ -10,8 +10,8 @@ do arg = args.shift();
 while ( arg !== __filename
    && (base = path.basename(arg)) !== "templateready"
    && base !== "templateready.js"
-)
+);
 
 templateready
-   .addEngine(require('./compilers/underscore-ejs'))
+   .addEngine(require('./compilers/underscore-template'))
    .run(args);
