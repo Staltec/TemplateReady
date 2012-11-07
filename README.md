@@ -49,3 +49,18 @@
         templateready myapp.js
         templateready -d ./wwwroot/app -s mytemplates -w -p 1000
         templateready --source ./wwwroot/mytemplates --file ./wwwroot/app/comiled.js --target 'Application.Templates'
+
+
+## Simple Install
+
+Install npm, and then do this:
+
+    npm install templateready -g
+
+You don't even need to download or fork this repo at all.
+
+## Fancy Install
+
+Get this code, install npm, and then do this:
+
+    npm link

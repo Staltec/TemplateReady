@@ -1,6 +1,6 @@
 {
   "name": "templateready",
-  "version": "0.0.2",
+  "version": "0.0.7",
   "description": "Template on the fly pre-compiler.",
   "author": "Alexander `Staltec` Prozorov <staltec@gmail.com>",
   "dependencies": {
@@ -12,15 +12,14 @@
     "type": "git",
     "url": "git://github.com/Staltec/TemplateReady.git"
   },
-  "main": "./index.js",
+  "main": "./index",
   "bin": {
     "templateready": "./index.js"
   },
-  "engine": "node >= 0.6.x",
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "engines": {
+    "node": ">=0.6.1"
   },
+  "devDependencies": {},
   "keywords": [
     "template",
     "compile",
@@ -28,5 +27,6 @@
     "ejs",
     "watch"
   ],
-  "license": "BSD"
+  "license": "BSD",
+  "preferGlobal": "true"
 }

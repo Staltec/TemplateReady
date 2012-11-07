@@ -2,22 +2,16 @@
 
 var path = require("path"),
     args = process.argv.slice(1),
-   templateready = require("./lib/templateready")
+   templateready = require("./templateready")
    ;
 
 var arg, base;
 do arg = args.shift();
 while ( arg !== __filename
-   && (base = path.basename(arg)) !== "ejscompiler"
-   && base !== "ejscompiler.js"
+   && (base = path.basename(arg)) !== "templateready"
+   && base !== "templateready.js"
 )
-
 
 templateready
    .addEngine(require('./compilers/underscore-ejs'))
-   //.addEngine(require('./compilers/underscore-ejs'), /^.*\.(html?)$/)
-   //.addEngine(require('./compilers/underscore-ejs'), /^.*\.(ejs)$/)
    .run(args);
-
-
-// TODO: jade compiler
