@@ -14,4 +14,5 @@ while ( arg !== __filename
 
 templateready
    .addEngine(require('./compilers/underscore-template'))
+   .addEngine(require('./compilers/mustache'))
    .run(args);

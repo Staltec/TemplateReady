@@ -1,15 +1,15 @@
 <div>
     <h1><%= title %></h1>
 
-    <% if(list.length){ %>
     <ol>
+    <% if(list.length){ %>
         <% for(var v, i=0, l=list.length; i<l; i++){ v = list[i]; %>
         <li><%= v %></li>
         <% } %>
-    </ol>
     <% }else{ %>
-        Пустой список (не будет показан).
+        <li>Пустой список (не будет показан).</li>
     <% } %>
+    </ol>
 
     <h2>Дискография: <%= hash.firstName %> <%= hash.lastName %> <%= hash.age ? '('+hash.age+')' : '' %></h2>
 
@@ -18,5 +18,4 @@
         <li><%= v.year %> &mdash; <%= v.album %></li>
         <% } %>
     </ul>
-
 </div>

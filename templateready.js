@@ -193,7 +193,7 @@ function compileFile (file, callback){
      compiler({file:file}, function(err, funcCode){
         if(err){
            callback(err, '');
-           util.error('Trouble with template file: ' + file);
+           util.error('Trouble with template file: ' + file + ' > '+ err);
         }else{
            callback(null, funcCode ? cfg.targetOject+'.'+getFuncName(file)+' = ' + funcCode : '');
         }

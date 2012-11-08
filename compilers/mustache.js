@@ -6,13 +6,13 @@
 
 var util = require("util");
 var fs = require("fs");
-var _ = require('underscore');
+var hogan = require("hogan.js");
 
 module.exports = {};
 
-module.exports.name = 'Underscore-template compiler';
+module.exports.name = 'Mustache compiler';
 
-module.exports.filePattern = /^.*\.(html?)$/;
+module.exports.filePattern = /^.*\.(mustache)$/;
 
 module.exports.compiler = function(options, callback){
 
@@ -23,12 +23,11 @@ module.exports.compiler = function(options, callback){
          callback(err, '');
       }else{
          try{
-            code = _.template(fileContent).source;
+            code = hogan.compile(fileContent, {asString: true});
          }catch(e){
-            //util.error('Error pre-compile template: ' + fileContent);
             cErr = e;
          }
-         callback(cErr, code);
+         callback(cErr, !cErr ? 'function(obj){return new Hogan.Template('+code+').render(obj)};' : '');
       }
 
    });

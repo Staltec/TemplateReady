@@ -1,12 +1,14 @@
 {
   "name": "templateready",
-  "version": "0.0.9",
+  "version": "0.1.0",
   "description": "Template on the fly pre-compiler.",
   "author": "Alexander `Staltec` Prozorov <staltec@gmail.com>",
   "dependencies": {
     "async": ">=0.1.22",
     "uglify-js": ">= 1.3.4",
-    "underscore": ">= 1.4.2"
+    "underscore": ">= 1.4.2",
+    "jade": "~0.27.7",
+    "hogan.js": "~2.0.0"
   },
   "repository": {
     "type": "git",
@@ -25,6 +27,7 @@
     "compile",
     "pre-compile",
     "ejs",
+    "mustache",
     "watch"
   ],
   "license": "BSD",
