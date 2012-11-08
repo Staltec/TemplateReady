@@ -10,6 +10,7 @@ var fs = require("fs");
 var async = require("async");
 var jsp = require("uglify-js").parser;
 var pro = require("uglify-js").uglify;
+var zlib = require('zlib');
 var meta = require("./package.json");
 
 var cfg = {},
@@ -158,17 +159,27 @@ function compileFiles (files){
       buf +=  cfg.targetOject+'.require = '+_requireSample.toString()+'\n\n';
       buf += res.join('\n\n');
 
-      fs.writeFile(cfg.outFile+'.js', hdr + buf, 'utf8', function(err){
-         if(err) util.error('\nCan`t write script file: "'+cfg.outFile+'.js"\n');
-      });
+      // Save common JS file
+      saveToFile(cfg.outFile+'.js', hdr + buf);
 
-      fs.writeFile(cfg.outFile+'.min.js', hdr + minifier(buf), 'utf8', function(err){
-         if(err) util.error('\nCan`t write script file: "'+cfg.outFile+'.min.js"\n');
+      // Save minified  JS file
+      buf = minifier(buf);
+      saveToFile(cfg.outFile+'.min.js', hdr + buf);
+
+      // Save compressed  JS file
+      zlib.gzip(buf, function(err, result){
+         saveToFile(cfg.outFile+'.min.js.gz', result);
       });
 
       util.debug('save canges...');
 
    })
+}
+
+function saveToFile(name, data){
+   fs.writeFile(name, data, 'utf8', function(err){
+      if(err) util.error('\nCan`t write script file: "'+name+'"\n');
+   });
 }
 
 
