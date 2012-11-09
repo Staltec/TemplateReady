@@ -7,11 +7,13 @@ TemplateReady is multi-templating on the fly pre-compiler.
 * Most common template libraries support.
 * If rewrite template in another templating library - don't need to change client-side application code.
 * Create common, minified and gzipped versions (useful with gzip_static Nginx module).
+* include template library runtime code (if exists) into the output script file.
 
 
 ## Supported template libraries
 * [Underscore](http://underscorejs.org/#template) template - builds client-side independent methods. Not even need Underscore.js!
-* [Mustache](http://mustache.github.com/) - client-side [hogan.js](https://github.com/twitter/hogan.js) ([template-2.0.0.js](https://github.com/twitter/hogan.js/blob/master/web/builds/2.0.0/template-2.0.0.js)) required.
+* [Mustache](http://mustache.github.com/) - client-side [runtime](https://github.com/twitter/hogan.js/blob/master/web/builds/2.0.0/template-2.0.0.js) code required.
+* [Jade](https://github.com/visionmedia/jade) - client-side [runtime](https://github.com/visionmedia/jade/blob/master/runtime.js) code required.
 
 
 ## Simple Install
@@ -57,8 +59,12 @@ Get this code, install npm, and then do this:
        You must ensure that the object already declared in your JS application.
        Default is 'Core.Template'
 
+      -r| --runtime
+        Add template library runtime code (if exists) into the output script file.
+        No default
+
      -w|--watch
-       When a change template file occurs, rebuild output js files.
+       When a change template file occurs, rebuild output js file.
        No default
 
      -p|--poll-interval <milliseconds>
@@ -75,8 +81,9 @@ Get this code, install npm, and then do this:
        Show version and exit.
 
      Examples:
+       templateready -d ./wwwroot/app --runtime
        templateready -d ./wwwroot/app -s mytemplates -w -p 1000
-       templateready --source ./wwwroot/mytemplates --file ./wwwroot/app/comiled.js --target 'Application.Templates'
+       templateready --source ./wwwroot/mytemplates --file ./wwwroot/app/comiled.js --target 'MyApplicationTemplates'
 
 
 ## Issues

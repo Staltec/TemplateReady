@@ -10,7 +10,7 @@ var _ = require('underscore');
 
 module.exports = {};
 
-module.exports.name = 'Underscore-template compiler';
+module.exports.type = 'underscore';
 
 module.exports.filePattern = /^.*\.(html?)$/;
 

@@ -4,26 +4,26 @@
  * Time: 22:42
  */
 
-var util = require("util");
-var path = require("path");
-var fs = require("fs");
-var async = require("async");
-var jsp = require("uglify-js").parser;
-var pro = require("uglify-js").uglify;
-var zlib = require('zlib');
-var meta = require("./package.json");
+var util = require("util")
+  , path = require("path")
+  , fs = require("fs")
+  , async = require("async")
+  , jsp = require("uglify-js").parser
+  , pro = require("uglify-js").uglify
+  , zlib = require('zlib')
+  , meta = require("./package.json");
 
-var cfg = {},
-    sourceDirRegExp,
-    templateNames,
-    alreadyWatched = {},
-    compilers = [];
+var cfg = {}
+  , sourceDirRegExp
+  , templateNames
+  , runtimeCode
+  , alreadyWatched = {}
+  , compilers = [];
 
 exports.addEngine = function(engine, forcePattern){
    if(engine && engine.filePattern instanceof RegExp && engine.compiler instanceof Function){
       if(forcePattern instanceof RegExp) engine.filePattern = forcePattern;
       compilers.push(engine);
-      //util.puts('Plugin template engine: "'+(engine.name?engine.name:'Unknown')+'" with pattern: '+engine.filePattern);
    }
    return this;
 };
@@ -44,6 +44,8 @@ exports.run = function (args){
           return console.log('templateready version: '+meta.version);
       } else if(arg === "--watch" || arg === "-w"){
          cfg.watch = true;
+      } else if(arg === "--runtime" || arg === "-r"){
+         cfg.runtime = true;
       } else if(arg === "--dir" || arg === "-d"){
          cfg.workDir = args.shift();
       } else if(arg === "--file" || arg === "-f"){
@@ -146,6 +148,7 @@ var _requireSample = function (n){ return this[this._n[n]] };
 function compileFiles (files){
    var hdr, buf = '';
    templateNames = {};
+   runtimeCode = {};
 
    async.map(files,
    function(f, cb){
@@ -160,6 +163,10 @@ function compileFiles (files){
       buf += '_n: '+JSON.stringify(templateNames)+',\n';
       buf +=  'require: '+_requireSample.toString()+'\n';
       buf += '}\n\n';
+
+      for(var key in runtimeCode) if (runtimeCode.hasOwnProperty(key)) {
+         buf += runtimeCode[key]+'\n\n';
+      }
 
       // Save common JS file
       saveToFile(cfg.outFile+'.js', hdr + buf);
@@ -194,20 +201,24 @@ function getFuncName(file){
 
 
 function compileFile (file, callback){
-   var compiler;
+   var engine;
    for(var i=0, l=compilers.length; i<l; i++){
       if(compilers[i].filePattern.test(file)){
-         compiler = compilers[i].compiler;
+         engine = compilers[i];
          break;
       }
    }
 
-   if(compiler){
-     compiler({file:file}, function(err, funcCode){
+   if(engine && engine.compiler){
+      engine.compiler({file:file}, function(err, funcCode){
         if(err){
            callback(err, '');
            util.error('Trouble with template file: ' + file + ' > '+ err);
         }else{
+           // get runtime code if exists
+           if(cfg.runtime && engine.type && engine.runtime) runtimeCode[engine.type] = engine.runtime;
+
+           //  return template code
            callback(null, funcCode ? getFuncName(file)+': ' + funcCode + ',' : '');
         }
         if(!cfg.isWindowsWithoutWatchFile) watchGivenFile(file);
@@ -281,14 +292,18 @@ function help (){
       ("    Default is 'templates.js'")
       ("")
 
-      ("  -t, --target <targetVariable>")
+      ("  -t| --target <targetVariable>")
       ("    Name of the global object containing templates.")
       ("    Default is 'TemplateReady'")
       ("")
 
+      ("  -r| --runtime")
+      ("    Add template library runtime code (if exists) into the output script file.")
+      ("    No default")
+      ("")
+
       ("  -w|--watch")
-      ("    Watch for changes for source directory.")
-      ("    When a change template file occurs, rebuild output js files")
+      ("    When a change template file occurs, rebuild output js file.")
       ("    No default")
       ("")
 
@@ -309,8 +324,9 @@ function help (){
       ("")
 
       ("Examples:")
+      ("  templateready -d ./wwwroot/app --runtime")
       ("  templateready -d ./wwwroot/app -s mytemplates -w -p 1000")
-      ("  templateready --source ./wwwroot/mytemplates --file ./wwwroot/app/comiled.js --target 'Application.Templates'")
+      ("  templateready --source ./wwwroot/mytemplates --file ./wwwroot/app/comiled.js --target 'MyApplicationTemplates'")
       ("");
 }
 

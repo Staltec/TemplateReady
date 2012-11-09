@@ -1,9 +1,9 @@
 #!/usr/bin/env node
 
-var path = require("path"),
-    args = process.argv.slice(1),
-   templateready = require("./templateready")
-   ;
+var path = require("path")
+  , args = process.argv.slice(1)
+  , templateready = require("./templateready")
+  ;
 
 var arg, base;
 do arg = args.shift();
@@ -15,4 +15,5 @@ while ( arg !== __filename
 templateready
    .addEngine(require('./compilers/underscore-template'))
    .addEngine(require('./compilers/mustache'))
+   .addEngine(require('./compilers/jade'))
    .run(args);

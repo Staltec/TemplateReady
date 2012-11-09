@@ -4,15 +4,18 @@
  * Time: 14:52
  */
 
-var util = require("util");
-var fs = require("fs");
-var hogan = require("hogan.js");
+var util = require("util")
+  , fs = require("fs")
+  , hogan = require("hogan.js")
+  ;
 
 module.exports = {};
 
-module.exports.name = 'Mustache compiler';
+module.exports.type = 'mustache';
 
 module.exports.filePattern = /^.*\.(mustache)$/;
+
+module.exports.runtime = fs.readFileSync(__dirname+'/hogan.template-2.0.0.min.js', 'utf8')+';';
 
 module.exports.compiler = function(options, callback){
 

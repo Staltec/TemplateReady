@@ -31,6 +31,10 @@
       testFunc('mustacheTest_space');
       testFile('mustache/test space.mustache');
 
+      // Jade template
+      testFunc('jadeTest');
+      testFile('jade/test.jade');
+
    }
 
    /* ----------------------------------------------- */
@@ -62,9 +66,6 @@
       counter++;
       if(!locals) locals = testData;
 
-      var sb = document.getElementById('statusBar');
-      sb.innerHTML += '<a href="#'+counter+'" style="text-decoration:none; background-color:'+(err ? 'red' : 'green')+'">&nbsp;&nbsp;&nbsp;&nbsp;</a>&nbsp;';
-
       var html, err, f;
       try{
          f = Template.require(fileName);
@@ -73,6 +74,9 @@
          err = true;
          html = e;
       }
+
+      var sb = document.getElementById('statusBar');
+      sb.innerHTML += '<a href="#'+counter+'" style="text-decoration:none; background-color:'+(err ? 'red' : 'green')+'">&nbsp;&nbsp;&nbsp;&nbsp;</a>&nbsp;';
 
       var tests = document.getElementById('tests');
       tests.innerHTML += '<span id="'+counter+'" style="background-color:'+(err ? 'red' : 'green')+'">&nbsp;&nbsp;&nbsp;&nbsp;</span> <strong>File "'+fileName+'"</strong>';
