@@ -1,11 +1,11 @@
 // Assembled by TemplateReady 0.1.2
-// At Fri Nov 09 2012 15:43:15 GMT+0800 (KRAT)
+// At Fri Nov 09 2012 15:54:56 GMT+0800 (KRAT)
 
 var TemplateReady = {};
 
 TemplateReady._names = {"underscore/test.htm":"underscoreTest","mustache/test.mustache":"mustacheTest"};
 
-TemplateReady.require = function (name){ return this._names[name] ? this[this._names[name]] : undefined }
+TemplateReady.require = function (name){ return this[this._names[name]] }
 
 TemplateReady.underscoreTest = function(obj){
 var __t,__p='',__j=Array.prototype.join,print=function(){__p+=__j.call(arguments,'');};

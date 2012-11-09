@@ -23,7 +23,7 @@ var Core = {
       ]
    },
 
-   run: function(){
+   runTests: function(){
       Core.Template = TemplateReady;
 
       // Underscore template engine
