@@ -1,8 +1,38 @@
-# Template Ready is template on the fly pre-compiler.
+# TemplateReady
+
+TemplateReady is multi-templating library on the fly pre-compiler.
+
+
+## Why TemplateReady?
+* Most common template libraries support
+* If rewrite template in another templating library - don't need to change client-side application code
+* Create common, minified and gzipped versions (useful with gzip_static Nginx module).
+
+
+## Supported template libraries
+* Underscore template - client-side independent methods. Not even need Underscore.js!
+* Mustache - client-side [hogan.js](https://github.com/twitter/hogan.js) ([template-2.0.0.js](https://github.com/twitter/hogan.js/blob/master/web/builds/2.0.0/template-2.0.0.js)) required
+
+
+//## Client-side Test pre-compiled templates
+
+
+## Simple Install
+
+Install npm, and then do this:
+
+    npm install templateready -g
+
+You don't even need to download or fork this repo at all.
+
+## Fancy Install
+
+Get this code, install npm, and then do this:
+
+    npm link
 
 
 ## templateready --help
-
 
     Usage:
       templateready [options]
@@ -53,16 +83,19 @@
        templateready --source ./wwwroot/mytemplates --file ./wwwroot/app/comiled.js --target 'Application.Templates'
 
 
-## Simple Install
+## Issues
 
-Install npm, and then do this:
+Have a bug? Please create an issue here on GitHub!
 
-    npm install templateready -g
+https://github.com/Staltec/TemplateReady/issues
 
-You don't even need to download or fork this repo at all.
 
-## Fancy Install
+## Author
 
-Get this code, install npm, and then do this:
+**Alexander Prozorov**
 
-    npm link
++ https://github.com/Staltec
+
+
+## License
+TemplateReady is released under the MIT license.
