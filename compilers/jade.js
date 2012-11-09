@@ -16,7 +16,7 @@ module.exports.type = 'jade';
 
 module.exports.filePattern = /^.*\.(jade)$/;
 
-module.exports.runtime = fs.readFileSync(__dirname+'/jade.runtime.min.js', 'utf8');
+module.exports.runtime = '/*!\n* Jade - runtime\n* Copyright(c) 2010 TJ Holowaychuk <tj@vision-media.ca>\n* MIT Licensed\n*/\n'+fs.readFileSync(__dirname+'/jade.runtime.min.js', 'utf8');
 
 module.exports.compiler = function(options, callback){
 
@@ -30,7 +30,7 @@ module.exports.compiler = function(options, callback){
             code = jade.compile(fileContent, {
                filename : options.file,
                client : true,
-               self: true,
+               //self: true,
                compileDebug : false
             }).toString();
             if(code) code = code.toString().replace('function anonymous', 'function');

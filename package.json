@@ -26,8 +26,9 @@
     "template",
     "compile",
     "pre-compile",
-    "ejs",
+    "underscore",
     "mustache",
+    "jade",
     "watch"
   ],
   "license": "MIT",

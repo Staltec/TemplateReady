@@ -1,3 +1,15 @@
-h1 hello
+div
+  h1= title
 
-#main Hello world
+ol
+  if (list.length)
+    each item in list
+      li= item
+  else
+    li Пустой список (не будет показан).
+
+h2 Дискография: #{hash.firstName} #{hash.lastName} #{hash.age ? '\('+hash.age+'\)' : ''}
+ul
+  each item in objList
+    li #{item.year} &mdash; #{item.album}
+
