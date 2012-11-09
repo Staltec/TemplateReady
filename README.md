@@ -58,8 +58,7 @@ Get this code, install npm, and then do this:
        Default is 'Core.Template'
 
      -w|--watch
-       Watch for changes for source directory.
-       When a change template file occurs, rebuild output js files
+       When a change template file occurs, rebuild output js files.
        No default
 
      -p|--poll-interval <milliseconds>
