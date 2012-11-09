@@ -141,7 +141,7 @@ function minifier(code){
 }
 
 
-var _requireSample = function (name){ return this._names[name] ? this[this._names[name]] : undefined };
+var _requireSample = function (name){ return this[this._names[name]] };
 
 function compileFiles (files){
    var hdr, buf = '';
