@@ -38,10 +38,12 @@ var Core = {
       Core.testFunc('mustacheTest_space');
       Core.testFile('mustache/test space.mustache');
 
-
    },
 
+   /* ----------------------------------------------- */
+
    testFunc: function(funcName, locals){
+      Core.counter = 1+Core.counter || 0;
       if(!locals) locals = Core.testData;
 
       var html, err;
@@ -52,14 +54,21 @@ var Core = {
          html = e;
          console.log(e);
       }
-      document.write('<span style="background-color:'+(err ? 'red' : 'green')+'">&nbsp;&nbsp;&nbsp;&nbsp;</span> <strong>Function "'+funcName+'"</strong>');
-      document.write('<div style="padding:5px; margin-bottom:30px; border: 1px dashed #999999; background-color: #eeeeee">');
-      document.write(html);
-      document.write('</div>');
+
+      var sb = document.getElementById('statusBar');
+      sb.innerHTML += '<a href="#'+Core.counter+'" style="text-decoration:none; background-color:'+(err ? 'red' : 'green')+'">&nbsp;&nbsp;&nbsp;&nbsp;</a>&nbsp;';
+
+      var tests = document.getElementById('tests');
+      tests.innerHTML +='<span id="'+Core.counter+'" style="background-color:'+(err ? 'red' : 'green')+'">&nbsp;&nbsp;&nbsp;&nbsp;</span> <strong>Function "'+funcName+'"</strong>';
+      tests.innerHTML +='<div style="padding:5px; margin-bottom:30px; border: 1px dashed #999999; background-color: #eeeeee">'+html+'</div>';
    },
 
    testFile: function(fileName, locals){
+      Core.counter = 1+Core.counter || 0;
       if(!locals) locals = Core.testData;
+
+      var sb = document.getElementById('statusBar');
+      sb.innerHTML += '<a href="#'+Core.counter+'" style="text-decoration:none; background-color:'+(err ? 'red' : 'green')+'">&nbsp;&nbsp;&nbsp;&nbsp;</a>&nbsp;';
 
       var html, err;
       try{
@@ -68,11 +77,10 @@ var Core = {
          err = true;
          html = e;
       }
-      document.write('<span style="background-color:'+(err ? 'red' : 'green')+'">&nbsp;&nbsp;&nbsp;&nbsp;</span> <strong>File "'+fileName+'"</strong>');
-      document.write('<div style="padding:5px; margin-bottom:30px; border: 1px dashed #999999; background-color: #eeeeee">');
-      document.write(html);
-      document.write('</div>');
-   }
 
+      var tests = document.getElementById('tests');
+      tests.innerHTML += '<span id="'+Core.counter+'" style="background-color:'+(err ? 'red' : 'green')+'">&nbsp;&nbsp;&nbsp;&nbsp;</span> <strong>File "'+fileName+'"</strong>';
+      tests.innerHTML += '<div style="padding:5px; margin-bottom:30px; border: 1px dashed #999999; background-color: #eeeeee">'+html+'</div>';
+   }
 
 };

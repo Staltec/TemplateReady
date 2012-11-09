@@ -4,14 +4,14 @@ TemplateReady is multi-templating library on the fly pre-compiler.
 
 
 ## Why TemplateReady?
-* Most common template libraries support
-* If rewrite template in another templating library - don't need to change client-side application code
+* Most common template libraries support.
+* If rewrite template in another templating library - don't need to change client-side application code.
 * Create common, minified and gzipped versions (useful with gzip_static Nginx module).
 
 
 ## Supported template libraries
 * [Underscore](http://underscorejs.org/#template) template - builds client-side independent methods. Not even need Underscore.js!
-* [Mustache](http://mustache.github.com/) - client-side [hogan.js](https://github.com/twitter/hogan.js) ([template-2.0.0.js](https://github.com/twitter/hogan.js/blob/master/web/builds/2.0.0/template-2.0.0.js)) required
+* [Mustache](http://mustache.github.com/) - client-side [hogan.js](https://github.com/twitter/hogan.js) ([template-2.0.0.js](https://github.com/twitter/hogan.js/blob/master/web/builds/2.0.0/template-2.0.0.js)) required.
 
 
 ## Simple Install
