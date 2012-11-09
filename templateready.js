@@ -86,7 +86,7 @@ exports.run = function (args){
    sourceDirRegExp = new RegExp('^'+cfg.sourceDir+'\/?');
 
    if(!cfg.targetOject){
-      cfg.targetOject = "Core.Template";
+      cfg.targetOject = "TemplateReady";
    }
 
    getWatchedFiles(cfg.sourceDir);
@@ -155,6 +155,7 @@ function compileFiles (files){
       hdr =  '// Assembled by TemplateReady '+meta.version+'\n';
       hdr += '// At '+new Date()+'\n\n';
 
+      buf += 'var '+cfg.targetOject+' = {};\n\n';
       buf += cfg.targetOject+'._names = '+JSON.stringify(templateNames)+';\n\n';
       buf +=  cfg.targetOject+'.require = '+_requireSample.toString()+'\n\n';
       buf += res.join('\n\n');
@@ -279,10 +280,9 @@ function help (){
       ("    Default is 'templates.js'")
       ("")
 
-      ("  -t|--target <targetJsObject>")
-      ("    The name of object who contain pre-compiled temlates as methods.")
-      ("    You must ensure that the object already declared in your JS application.")
-      ("    Default is 'Core.Template'")
+      ("  -t, --target <targetVariable>")
+      ("    Name of the global object containing templates.")
+      ("    Default is 'TemplateReady'")
       ("")
 
       ("  -w|--watch")

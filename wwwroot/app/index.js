@@ -7,7 +7,7 @@ var Core = {
    Model: {},
    Collection: {},
    View: {},
-   Template: {}, // <- target container for pre-compiled templates
+   Template: {},
 
    testData: {
       title:'Тестовый заголовок',
@@ -24,6 +24,8 @@ var Core = {
    },
 
    run: function(){
+      Core.Template = TemplateReady;
+
       // Underscore template engine
       Core.testFunc('underscoreTest');
       Core.testFile('underscore/test.htm');
