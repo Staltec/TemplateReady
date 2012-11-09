@@ -65,9 +65,10 @@
       var sb = document.getElementById('statusBar');
       sb.innerHTML += '<a href="#'+counter+'" style="text-decoration:none; background-color:'+(err ? 'red' : 'green')+'">&nbsp;&nbsp;&nbsp;&nbsp;</a>&nbsp;';
 
-      var html, err;
+      var html, err, f;
       try{
-         html = Template._names[fileName] ? Template.require(fileName)(locals) : (err=true, 'not found');
+         f = Template.require(fileName);
+         html = f ? f(locals) : (err=true, 'not found');
       }catch(e){
          err = true;
          html = e;

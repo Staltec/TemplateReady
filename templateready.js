@@ -141,7 +141,7 @@ function minifier(code){
 }
 
 
-var _requireSample = function (name){ return this[this._names[name]] };
+var _requireSample = function (n){ return this[this._n[n]] };
 
 function compileFiles (files){
    var hdr, buf = '';
@@ -155,17 +155,18 @@ function compileFiles (files){
       hdr =  '// Assembled by TemplateReady '+meta.version+'\n';
       hdr += '// At '+new Date()+'\n\n';
 
-      buf += 'var '+cfg.targetOject+' = {};\n\n';
-      buf += cfg.targetOject+'._names = '+JSON.stringify(templateNames)+';\n\n';
-      buf +=  cfg.targetOject+'.require = '+_requireSample.toString()+'\n\n';
-      buf += res.join('\n\n');
+      buf += 'var '+cfg.targetOject+' = {\n\n';
+      buf += res.join('\n\n')+'\n\n';
+      buf += '_n: '+JSON.stringify(templateNames)+',\n';
+      buf +=  'require: '+_requireSample.toString()+'\n';
+      buf += '}\n\n';
 
       // Save common JS file
       saveToFile(cfg.outFile+'.js', hdr + buf);
 
       // Save minified  JS file
       buf = minifier(buf);
-      saveToFile(cfg.outFile+'.min.js', hdr + buf);
+      saveToFile(cfg.outFile+'.min.js', buf);
 
       // Save compressed  JS file
       zlib.gzip(buf, function(err, result){
@@ -207,7 +208,7 @@ function compileFile (file, callback){
            callback(err, '');
            util.error('Trouble with template file: ' + file + ' > '+ err);
         }else{
-           callback(null, funcCode ? cfg.targetOject+'.'+getFuncName(file)+' = ' + funcCode : '');
+           callback(null, funcCode ? getFuncName(file)+': ' + funcCode + ',' : '');
         }
         if(!cfg.isWindowsWithoutWatchFile) watchGivenFile(file);
      });

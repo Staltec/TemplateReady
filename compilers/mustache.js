@@ -27,7 +27,7 @@ module.exports.compiler = function(options, callback){
          }catch(e){
             cErr = e;
          }
-         callback(cErr, !cErr ? 'function(obj){return new Hogan.Template('+code+').render(obj)};' : '');
+         callback(cErr, !cErr ? 'function(obj){return new Hogan.Template('+code+').render(obj)}' : '');
       }
 
    });
