@@ -14,9 +14,6 @@ TemplateReady is multi-templating library on the fly pre-compiler.
 * Mustache - client-side [hogan.js](https://github.com/twitter/hogan.js) ([template-2.0.0.js](https://github.com/twitter/hogan.js/blob/master/web/builds/2.0.0/template-2.0.0.js)) required
 
 
-//## Client-side Test pre-compiled templates
-
-
 ## Simple Install
 
 Install npm, and then do this:
