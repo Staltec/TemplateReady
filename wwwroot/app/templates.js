@@ -1,9 +1,9 @@
 // Assembled by TemplateReady 0.1.2
-// At Fri Nov 09 2012 15:54:56 GMT+0800 (KRAT)
+// At Fri Nov 09 2012 16:20:37 GMT+0800 (KRAT)
 
 var TemplateReady = {};
 
-TemplateReady._names = {"underscore/test.htm":"underscoreTest","mustache/test.mustache":"mustacheTest"};
+TemplateReady._names = {"underscore/test.htm":"underscoreTest","mustache/test space.mustache":"mustacheTest_space","mustache/test.mustache":"mustacheTest"};
 
 TemplateReady.require = function (name){ return this[this._names[name]] }
 
@@ -42,5 +42,7 @@ __p+='\r\n    </ul>\r\n</div>';
 }
 return __p;
 }
+
+TemplateReady.mustacheTest_space = function(obj){return new Hogan.Template(function(c,p,i){var _=this;_.b(i=i||"");_.b("<div>");_.b("\n" + i);_.b("    <h1>");_.b(_.v(_.f("title",c,p,0)));_.b("</h1>");_.b("\n" + i);_.b("\n" + i);_.b("    <ol>");_.b("\n" + i);if(_.s(_.f("list",c,p,1),c,p,0,52,80,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("        <li>");_.b(_.v(_.d(".",c,p,0)));_.b("</li>");_.b("\n");});c.pop();}if(!_.s(_.f("list",c,p,1),c,p,1,0,0,"")){_.b("        <li>Пустой список (не будет показан).</li>");_.b("\n");};_.b("    </ol>");_.b("\n" + i);_.b("\n" + i);if(_.s(_.f("hash",c,p,1),c,p,0,193,277,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("    <h2>Дискография: ");_.b(_.v(_.f("firstName",c,p,0)));_.b(" ");_.b(_.v(_.f("lastName",c,p,0)));_.b(" ");if(_.s(_.f("age",c,p,1),c,p,0,250,259,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("(");_.b(_.v(_.f("age",c,p,0)));_.b(")");});c.pop();}_.b("</h2>");_.b("\n");});c.pop();}_.b("\n" + i);_.b("    <ul>");_.b("\n" + i);if(_.s(_.f("objList",c,p,1),c,p,0,313,362,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("        <li>");_.b(_.v(_.f("year",c,p,0)));_.b(" &mdash; ");_.b(_.v(_.f("album",c,p,0)));_.b("</li>");_.b("\n");});c.pop();}_.b("    </ul>");_.b("\n" + i);_.b("\n" + i);_.b("\n" + i);_.b("</div>");_.b("\n" + i);_.b("\n");return _.fl();;}).render(obj)};
 
 TemplateReady.mustacheTest = function(obj){return new Hogan.Template(function(c,p,i){var _=this;_.b(i=i||"");_.b("<div>");_.b("\n" + i);_.b("    <h1>");_.b(_.v(_.f("title",c,p,0)));_.b("</h1>");_.b("\n" + i);_.b("\n" + i);_.b("    <ol>");_.b("\n" + i);if(_.s(_.f("list",c,p,1),c,p,0,52,80,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("        <li>");_.b(_.v(_.d(".",c,p,0)));_.b("</li>");_.b("\n");});c.pop();}if(!_.s(_.f("list",c,p,1),c,p,1,0,0,"")){_.b("        <li>Пустой список (не будет показан).</li>");_.b("\n");};_.b("    </ol>");_.b("\n" + i);_.b("\n" + i);if(_.s(_.f("hash",c,p,1),c,p,0,193,277,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("    <h2>Дискография: ");_.b(_.v(_.f("firstName",c,p,0)));_.b(" ");_.b(_.v(_.f("lastName",c,p,0)));_.b(" ");if(_.s(_.f("age",c,p,1),c,p,0,250,259,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("(");_.b(_.v(_.f("age",c,p,0)));_.b(")");});c.pop();}_.b("</h2>");_.b("\n");});c.pop();}_.b("\n" + i);_.b("    <ul>");_.b("\n" + i);if(_.s(_.f("objList",c,p,1),c,p,0,313,362,"{{ }}")){_.rs(c,p,function(c,p,_){_.b("        <li>");_.b(_.v(_.f("year",c,p,0)));_.b(" &mdash; ");_.b(_.v(_.f("album",c,p,0)));_.b("</li>");_.b("\n");});c.pop();}_.b("    </ul>");_.b("\n" + i);_.b("\n" + i);_.b("\n" + i);_.b("</div>");_.b("\n" + i);_.b("\n");return _.fl();;}).render(obj)};

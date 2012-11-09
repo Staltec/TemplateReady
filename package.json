@@ -30,6 +30,6 @@
     "mustache",
     "watch"
   ],
-  "license": "BSD",
+  "license": "MIT",
   "preferGlobal": "true"
 }

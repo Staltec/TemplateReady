@@ -186,7 +186,7 @@ function saveToFile(name, data){
 
 function getFuncName(file){
    var fileName =  file.replace(sourceDirRegExp,'');
-   var funcName = fileName.replace(/\..+?$/,'').replace(/\/\w/g, function(t){return t.charAt(1).toUpperCase()});
+   var funcName = fileName.replace(/ /g,'_').replace(/\..+?$/,'').replace(/\/\w/g, function(t){return t.charAt(1).toUpperCase()});
    templateNames[fileName] = funcName;
    return funcName;
 }

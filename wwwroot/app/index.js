@@ -34,6 +34,11 @@ var Core = {
       Core.testFunc('mustacheTest');
       Core.testFile('mustache/test.mustache');
 
+      // Mustache template with space in filename
+      Core.testFunc('mustacheTest_space');
+      Core.testFile('mustache/test space.mustache');
+
+
    },
 
    testFunc: function(funcName, locals){

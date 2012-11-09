@@ -1,0 +1,25 @@
+<div>
+    <h1>{{title}}</h1>
+
+    <ol>
+    {{#list}}
+        <li>{{.}}</li>
+    {{/list}}
+    {{^list}}
+        <li>Пустой список (не будет показан).</li>
+    {{/list}}
+    </ol>
+
+    {{#hash}}
+    <h2>Дискография: {{firstName}} {{lastName}} {{#age}}({{age}}){{/age}}</h2>
+    {{/hash}}
+
+    <ul>
+    {{#objList}}
+        <li>{{year}} &mdash; {{album}}</li>
+    {{/objList}}
+    </ul>
+
+
+</div>
+
