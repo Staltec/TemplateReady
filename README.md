@@ -1,6 +1,6 @@
 # TemplateReady
 
-TemplateReady is multi-templating library on the fly pre-compiler.
+TemplateReady is multi-templating on the fly pre-compiler.
 
 
 ## Why TemplateReady?
