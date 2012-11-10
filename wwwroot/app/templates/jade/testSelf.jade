@@ -1,0 +1,15 @@
+div
+  h1= self.title
+
+ol
+  if (self.list.length)
+    each item in self.list
+      li= item
+  else
+    li Пустой список (не будет показан).
+
+h2 Дискография: #{self.hash.firstName} #{self.hash.lastName} #{self.hash.age ? '\('+self.hash.age+'\)' : ''}
+ul
+  each item in self.objList
+    li #{item.year} &mdash; #{item.album}
+

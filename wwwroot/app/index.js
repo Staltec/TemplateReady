@@ -35,6 +35,9 @@
       testFunc('jadeTest');
       testFile('jade/test.jade');
 
+      testFunc('jadeTestSelf');
+      testFile('jade/testSelf.jade');
+
    }
 
    /* ----------------------------------------------- */
